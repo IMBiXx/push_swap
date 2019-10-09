@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 02:46:12 by tpotier           #+#    #+#             */
-/*   Updated: 2019/05/31 19:25:04 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/10/09 12:48:34 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	disp_stack(t_ps_bench *bench, int opts)
 		ft_printf("%k", K_NBG << K_BG_SHIFT | K_NFG | K_M_BOLD);
 		ft_putnchar(' ', (G_THK * 2 + 2 - nw) / 2 + ((G_THK * 2 + 2 - nw) % 2));
 		ft_putstr(bench->ops->content);
-		ft_putnchar(' ', (G_THK * 2 + 2- nw) / 2);
+		ft_putnchar(' ', (G_THK * 2 + 2 - nw) / 2);
 		ft_printf("%K\n");
 	}
 	disp_graph(bench);

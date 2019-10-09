@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 16:54:45 by valecart          #+#    #+#             */
-/*   Updated: 2019/10/09 12:25:34 by valecart         ###   ########.fr       */
+/*   Updated: 2019/10/09 12:47:39 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int		is_only_one(t_stack *a)
 
 int		parsing_digit(int n, char **av, t_stack *stack)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	long int	tmp;
 
 	i = n - 1;
@@ -76,6 +76,35 @@ int		parsing_digit(int n, char **av, t_stack *stack)
 	return (1);
 }
 
+int		get_instructions_next(char **line, t_stack *a, t_stack *b)
+{
+	if (ft_strcmp(*line, "pa") == 0)
+		push_stack(b, a);
+	else if (ft_strcmp(*line, "pb") == 0)
+		push_stack(a, b);
+	else if (ft_strcmp(*line, "ra") == 0)
+		rotate_stack(a);
+	else if (ft_strcmp(*line, "rb") == 0)
+		rotate_stack(b);
+	else if (ft_strcmp(*line, "rr") == 0)
+	{
+		rotate_stack(a);
+		rotate_stack(b);
+	}
+	else if (ft_strcmp(*line, "rra") == 0)
+		rev_rotate_stack(a);
+	else if (ft_strcmp(*line, "rrb") == 0)
+		rev_rotate_stack(b);
+	else if (ft_strcmp(*line, "rrr") == 0)
+	{
+		rev_rotate_stack(a);
+		rev_rotate_stack(b);
+	}
+	else
+		return (0);
+	return (1);
+}
+
 int		get_instructions(t_stack *a, t_stack *b)
 {
 	char	*line;
@@ -91,40 +120,13 @@ int		get_instructions(t_stack *a, t_stack *b)
 			swap_stack(a);
 			swap_stack(b);
 		}
-		else if (ft_strcmp(line, "pa") == 0)
-			push_stack(b, a);
-		else if (ft_strcmp(line, "pb") == 0)
-			push_stack(a, b);
-		else if (ft_strcmp(line, "ra") == 0)
-			rotate_stack(a);
-		else if (ft_strcmp(line, "rb") == 0)
-			rotate_stack(b);
-		else if (ft_strcmp(line, "rr") == 0)
-		{
-			rotate_stack(a);
-			rotate_stack(b);
-		}
-		else if (ft_strcmp(line, "rra") == 0)
-			rev_rotate_stack(a);
-		else if (ft_strcmp(line, "rrb") == 0)
-			rev_rotate_stack(b);
-		else if (ft_strcmp(line, "rrr") == 0)
-		{
-			rev_rotate_stack(a);
-			rev_rotate_stack(b);
-		}
-		else if (ft_strcmp(line, "print") == 0)
-		{
-			ft_putstr("\nstack a:");
-			print_stack(a);
-			ft_putstr("\nstack b:");
-			print_stack(b);
-			ft_putstr("\n");
-		}
 		else
 		{
-			free(line);
-			return (-1);
+			if (get_instructions_next(&line, a, b) != 1)
+			{
+				free(line);
+				return (-1);
+			}
 		}
 		free(line);
 	}

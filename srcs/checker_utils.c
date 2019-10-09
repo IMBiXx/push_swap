@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 14:43:29 by valecart          #+#    #+#             */
-/*   Updated: 2019/07/19 14:15:39 by valecart         ###   ########.fr       */
+/*   Updated: 2019/10/09 12:35:35 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	swap_stack(t_stack *stack)
 	if (stack->sp < 2)
 		return ;
 	stack->sp--;
-	tmp = stack->stack[stack->sp]; // save top
-	stack->stack[stack->sp] = stack->stack[stack->sp - 1]; // place top - 1 au top
-	stack->stack[stack->sp - 1] = tmp; // place save dans top - 1
+	tmp = stack->stack[stack->sp];
+	stack->stack[stack->sp] = stack->stack[stack->sp - 1];
+	stack->stack[stack->sp - 1] = tmp;
 	stack->sp++;
 }
 

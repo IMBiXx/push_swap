@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 16:58:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/08/06 18:59:47 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/10/09 12:54:13 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ void	push_ops(t_ps_bench *bench, char *op)
 {
 	while (bench->ops && bench->ops->next)
 		bench->ops = bench->ops->next;
-	//ft_putstr("Action:");
-	//ft_putendl(op);
-#if 1
 	if (bench->ops && ((ft_strequ(op, "ra") && ft_strequ(bench->ops->content, "rra"))
 			|| (ft_strequ(op, "rra") && ft_strequ(bench->ops->content, "ra"))
 			|| (ft_strequ(op, "rrb") && ft_strequ(bench->ops->content, "rb"))
@@ -29,25 +26,24 @@ void	push_ops(t_ps_bench *bench, char *op)
 			|| (ft_strequ(op, "pb") && ft_strequ(bench->ops->content, "pa"))))
 		ft_dlstdel(&(bench->ops), NULL);
 	else if (bench->ops && ((ft_strequ(op, "sa") && ft_strequ(bench->ops->content, "sb"))
-			|| (ft_strequ(op, "sb") && ft_strequ(bench->ops->content, "sa"))))
+				|| (ft_strequ(op, "sb") && ft_strequ(bench->ops->content, "sa"))))
 	{
 		ft_dlstdel(&(bench->ops), NULL);
 		ft_dlstadd_end(&(bench->ops), "ss");
 	}
 	else if (bench->ops && ((ft_strequ(op, "ra") && ft_strequ(bench->ops->content, "rb"))
-			|| (ft_strequ(op, "rb") && ft_strequ(bench->ops->content, "ra"))))
+				|| (ft_strequ(op, "rb") && ft_strequ(bench->ops->content, "ra"))))
 	{
 		ft_dlstdel(&(bench->ops), NULL);
 		ft_dlstadd_end(&(bench->ops), "rr");
 	}
 	else if (bench->ops && ((ft_strequ(op, "rra") && ft_strequ(bench->ops->content, "rrb"))
-			|| (ft_strequ(op, "rrb") && ft_strequ(bench->ops->content, "rra"))))
+				|| (ft_strequ(op, "rrb") && ft_strequ(bench->ops->content, "rra"))))
 	{
 		ft_dlstdel(&(bench->ops), NULL);
 		ft_dlstadd_end(&(bench->ops), "rrr");
 	}
 	else
-#endif
 		ft_dlstadd_end(&(bench->ops), op);
 }
 
@@ -101,7 +97,6 @@ void	_insertion_sort2(t_ps_bench *ben)
 	size_t	best_index;
 	t_dist	t;
 
-
 	do_rop(ben, "pb");
 	while (ben->sa->sp)
 	{
@@ -123,12 +118,12 @@ void	_insertion_sort2(t_ps_bench *ben)
 			do_rop(ben, best_score.op == OP_R ? "rb" : "rrb");
 		do_rop(ben, "pb");
 	}
-	/*OPTI*/
 	while (ben->sb->stack[ben->sb->sp - 1] < ben->sb->stack[0])
 		do_rop(ben, "rb");
 	while (ben->sb->sp)
 		do_rop(ben, "pa");
 }
+
 void	disp_tab(int *t, int n)
 {
 	int	i;
@@ -154,7 +149,8 @@ int		main(int ac, char **av)
 	{
 		_insertion_sort2(&bench);
 		disp_ops(bench.ops);
-	} else
+	}
+	else
 		ft_putendl("Damn son !");
 	return (0);
 }

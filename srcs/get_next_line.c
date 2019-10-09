@@ -6,13 +6,13 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 14:27:12 by valecart          #+#    #+#             */
-/*   Updated: 2019/10/09 12:06:09 by valecart         ###   ########.fr       */
+/*   Updated: 2019/10/09 12:36:42 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char		*join_next_line(int const fd, char *str, int *rd)
+static char			*join_next_line(int const fd, char *str, int *rd)
 {
 	char	buff[BUFF_SIZE + 1];
 	char	*tmp;
@@ -28,7 +28,7 @@ static char		*join_next_line(int const fd, char *str, int *rd)
 	return (str);
 }
 
-static int				get_eof_line(char **str, char ***line)
+static int			get_eof_line(char **str, char ***line)
 {
 	if ((ft_strlen(*str) > 1) && ft_strrchr(*str, '\0'))
 	{
@@ -39,7 +39,7 @@ static int				get_eof_line(char **str, char ***line)
 	return (0);
 }
 
-int				get_next_line(int const fd, char **line)
+int					get_next_line(int const fd, char **line)
 {
 	int				rd;
 	char			*tmp;

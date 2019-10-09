@@ -6,13 +6,13 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:43:57 by valecart          #+#    #+#             */
-/*   Updated: 2019/10/09 11:44:46 by valecart         ###   ########.fr       */
+/*   Updated: 2019/10/09 12:35:57 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		ft_error(char const *str)
+int			ft_error(char const *str)
 {
 	ft_putstr_fd(str, 2);
 	return (-1);
